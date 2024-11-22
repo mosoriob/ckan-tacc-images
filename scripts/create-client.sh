@@ -24,7 +24,7 @@ fi
 
 # Set callback URL based on dev flag
 if [ "$DEV_FLAG" = "true" ]; then
-    CALLBACK_URL="https://192.168.1.197:8443/oauth2/callback"
+    CALLBACK_URL="http://ckan.tacc.cloud/oauth2/callback"
 else
     CALLBACK_URL="ckan.tacc.utexas.edu/oauth2/callback"
 fi
