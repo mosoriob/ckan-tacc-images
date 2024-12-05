@@ -7,8 +7,7 @@ volumes:
   vscode_server:
 
 services:
-
-  ckan-dev:
+  ckan:
     build:
       context: ckan/
       dockerfile: Dockerfile.dev
@@ -21,16 +20,16 @@ services:
       - solr
       - redis
     ports:
-      - "0.0.0.0:${CKAN_PORT_HOST}:5000"
+      - '0.0.0.0:${CKAN_PORT_HOST}:5000'
     volumes:
-      - ckan_storage:/var/lib/ckan
+      - /data/ckan:/var/lib/ckan
       - ./src:/srv/app/src_extensions
       - pip_cache:/root/.cache/pip
       - site_packages:/usr/lib/python3.10/site-packages
       - vscode_server:/root/.vscode-server
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-qO", "/dev/null", "http://localhost:5000"]
+      test: ['CMD', 'wget', '-qO', '/dev/null', 'http://localhost:5000']
       interval: 60s
       timeout: 10s
       retries: 3
@@ -39,7 +38,7 @@ services:
     image: ckan/ckan-base-datapusher:${DATAPUSHER_VERSION}
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-qO", "/dev/null", "http://localhost:8800"]
+      test: ['CMD', 'wget', '-qO', '/dev/null', 'http://localhost:8800']
       interval: 60s
       timeout: 10s
       retries: 3
@@ -58,21 +57,22 @@ services:
       - DATASTORE_READONLY_PASSWORD
       - DATASTORE_DB
     volumes:
-      - pg_data:/var/lib/postgresql/data
+      - /data/postgres:/var/lib/postgresql/data
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER}", "-d", "${POSTGRES_DB}"]
-     
+      test:
+        ['CMD', 'pg_isready', '-U', '${POSTGRES_USER}', '-d', '${POSTGRES_DB}']
+
   solr:
     image: ckan/ckan-solr:${SOLR_IMAGE_VERSION}
     volumes:
-      - solr_data:/var/solr
+      - /data/solr:/var/solr
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-qO", "/dev/null", "http://localhost:8983/solr/"]
+      test: ['CMD', 'wget', '-qO', '/dev/null', 'http://localhost:8983/solr/']
 
   redis:
     image: redis:${REDIS_VERSION}
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "redis-cli", "-e", "QUIT"]
+      test: ['CMD', 'redis-cli', '-e', 'QUIT']
