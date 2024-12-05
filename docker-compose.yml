@@ -1,25 +1,4 @@
-volumes:
-  ckan_storage:
-  pg_data:
-  solr_data:
-  pip_cache:
-  site_packages:
-
 services:
-
-  nginx:
-    build:
-      context: nginx/
-      dockerfile: Dockerfile
-    networks:
-      - webnet
-      - ckannet
-    depends_on:
-      ckan:
-        condition: service_healthy
-    ports:
-      - "0.0.0.0:${NGINX_SSLPORT_HOST}:${NGINX_SSLPORT}"
-    
   ckan:
     build:
       context: ckan/
@@ -41,16 +20,23 @@ services:
       redis:
         condition: service_healthy
     volumes:
-      - ckan_storage:/var/lib/ckan
-      - pip_cache:/root/.cache/pip
-      - site_packages:/usr/lib/python3.10/site-packages
+      - /data/ckan/storage:/var/lib/ckan
+      - /data/ckan/pip_cache:/root/.cache/pip
+      - /data/ckan/site_packages:/usr/lib/python3.10/site-packages
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-qO", "/dev/null", "http://localhost:5000/api/action/status_show"]
+      test:
+        [
+          'CMD',
+          'wget',
+          '-qO',
+          '/dev/null',
+          'http://localhost:5000/api/action/status_show',
+        ]
       interval: 60s
       timeout: 10s
       retries: 3
-    
+
   datapusher:
     networks:
       - ckannet
@@ -58,7 +44,7 @@ services:
     image: ckan/ckan-base-datapusher:${DATAPUSHER_VERSION}
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-qO", "/dev/null", "http://localhost:8800"]
+      test: ['CMD', 'wget', '-qO', '/dev/null', 'http://localhost:8800']
       interval: 60s
       timeout: 10s
       retries: 3
@@ -79,20 +65,21 @@ services:
       - DATASTORE_READONLY_PASSWORD
       - DATASTORE_DB
     volumes:
-      - pg_data:/var/lib/postgresql/data
+      - /data/postgres:/var/lib/postgresql/data
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER}", "-d", "${POSTGRES_DB}"]
-     
+      test:
+        ['CMD', 'pg_isready', '-U', '${POSTGRES_USER}', '-d', '${POSTGRES_DB}']
+
   solr:
     networks:
       - solrnet
     image: ckan/ckan-solr:${SOLR_IMAGE_VERSION}
     volumes:
-      - solr_data:/var/solr
+      - /data/solr:/var/solr
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-qO", "/dev/null", "http://localhost:8983/solr/"]
+      test: ['CMD', 'wget', '-qO', '/dev/null', 'http://localhost:8983/solr/']
 
   redis:
     image: redis:${REDIS_VERSION}
@@ -100,8 +87,8 @@ services:
       - redisnet
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "redis-cli", "-e", "QUIT"]
-    
+      test: ['CMD', 'redis-cli', '-e', 'QUIT']
+
 networks:
   webnet:
   ckannet:
