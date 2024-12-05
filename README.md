@@ -1,6 +1,6 @@
 # Docker Compose setup for CKAN
 
-## 4. Install (build and run) CKAN plus dependencies
+## Install (build and run) CKAN plus dependencies
 
 ### Base mode
 
@@ -37,3 +37,11 @@ ckan-docker-solr-1         ckan/ckan-solr:2.10-solr9          "docker-entrypoint
 ```
 
 After this step, CKAN should be running at `CKAN_SITE_URL` (by default https://localhost:8443)
+
+### Manage users
+
+To manage users, you can use the [CKAN API](https://docs.ckan.org/en/2.9/api/index.html).
+
+```bash
+ckan sysadmin add john_doe
+```
