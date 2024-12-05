@@ -24,6 +24,8 @@ services:
       - /data/ckan/pip_cache:/root/.cache/pip
       - /data/ckan/site_packages:/usr/lib/python3.10/site-packages
     restart: unless-stopped
+    ports:
+      - '${CKAN_PORT_HOST}:5000'
     healthcheck:
       test:
         [
