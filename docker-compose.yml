@@ -11,7 +11,7 @@ services:
       - solrnet
       - redisnet
     env_file:
-      - .env
+      - .env.dev
     depends_on:
       db:
         condition: service_healthy
@@ -76,7 +76,9 @@ services:
   solr:
     networks:
       - solrnet
-    image: ckan/ckan-solr:${SOLR_IMAGE_VERSION}
+    image: ckan/ckan-solr:2.9-solr9-spatial
+    ports:
+      - 8983:8983
     volumes:
       - /data/solr:/var/solr
     restart: unless-stopped
