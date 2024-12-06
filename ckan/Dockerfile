@@ -14,6 +14,8 @@ USER ckan
 RUN pip3 install -e 'git+https://github.com/mosoriob/ckanext-oauth2.git@0.7.1#egg=ckanext-oauth2'
 RUN pip3 install -e "git+https://github.com/ckan/ckanext-spatial.git#egg=ckanext-spatial"
 
+RUN pip install ckanext-geoview
+
 ADD requirements/ckanext-spatial.txt /tmp/
 RUN pip3 install -r /tmp/ckanext-spatial.txt
 # Copy custom templates
