@@ -16,6 +16,8 @@ RUN pip3 install -e "git+https://github.com/ckan/ckanext-spatial.git#egg=ckanext
 
 ADD requirements/ckanext-spatial.txt /tmp/
 RUN pip3 install -r /tmp/ckanext-spatial.txt
+# Copy custom templates
+ADD templates /srv/app/src/ckan/ckan/templates
 # Copy custom initialization scripts
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
 
