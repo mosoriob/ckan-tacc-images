@@ -11,7 +11,7 @@ RUN chown -R ckan: /srv/app
 
 USER ckan
 
-RUN pip3 install -e 'git+https://github.com/mosoriob/ckanext-oauth2.git@0.7.1#egg=ckanext-oauth2'
+RUN pip3 install -e 'git+https://github.com/mosoriob/ckanext-oauth2.git@1b5bea7b15b8de42c75492731b438917e3a07a25#egg=ckanext-oauth2'
 RUN pip3 install -e "git+https://github.com/ckan/ckanext-spatial.git#egg=ckanext-spatial"
 
 RUN pip install ckanext-geoview
