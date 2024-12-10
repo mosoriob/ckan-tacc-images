@@ -1,1 +1,2 @@
 ckan/templates/**/*.html
+ckan/ckanext/**/*.html
