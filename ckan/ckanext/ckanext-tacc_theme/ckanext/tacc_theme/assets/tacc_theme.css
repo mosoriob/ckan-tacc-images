@@ -10148,7 +10148,8 @@ h4 small {
 .account-masthead {
   min-height: 30px;
   color: #fff;
-  background: #003647 url('../../base/images/bg.png');
+  background: #222222;
+  border-bottom: 1px solid #ffffff;
 }
 .account-masthead:before,
 .account-masthead:after {
@@ -10209,7 +10210,7 @@ h4 small {
 }
 .account-masthead .account ul li a:hover {
   color: #d9e7eb;
-  background-color: #00232e;
+  background-color: #845eea;
   text-decoration: none;
 }
 .account-masthead .account ul li a.sub {
