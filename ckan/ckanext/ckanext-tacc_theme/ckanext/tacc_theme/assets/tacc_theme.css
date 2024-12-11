@@ -10034,11 +10034,11 @@ h4 small {
   margin-bottom: 10px;
 }
 .homepage .module-search .search-giant input {
-  border-color: #003f52;
+  border-color: #784fe8;
 }
 .homepage .module-search .module-content {
   border-radius: 3px 3px 0 0;
-  background-color: #222222;
+  background-color: #ffffff;
   border-bottom: none;
 }
 .homepage .module-search .module-content .heading {
@@ -10046,10 +10046,12 @@ h4 small {
   margin-bottom: 7px;
   font-size: 24px;
   line-height: 40px;
+  color: #222222;
 }
 .homepage .module-search .tags {
   padding: 5px 10px 10px 10px;
-  background-color: #003647;
+  background-color: #ffffff;
+  color: #222222;
   border-radius: 0 0 3px 3px;
 }
 .homepage .module-search .tags:before,
