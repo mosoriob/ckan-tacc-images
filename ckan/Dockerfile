@@ -18,8 +18,10 @@ RUN pip install ckanext-geoview
 
 ADD requirements/ckanext-spatial.txt /tmp/
 RUN pip3 install -r /tmp/ckanext-spatial.txt
-# Copy custom templates
-ADD templates /srv/app/src/ckan/ckan/templates
+# Add plugins
+ADD --chown=503:502 ckanext/ckanext-tacc_theme /srv/app/src/ckanext-tacc_theme
+RUN cd /srv/app/src/ckanext-tacc_theme && pip install -e .
+#RUN cd /srv/app/src/ckanext-tacc_theme
 # Copy custom initialization scripts
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
 
