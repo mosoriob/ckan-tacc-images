@@ -7,7 +7,7 @@
 #     preload:
 #       - base/main
 
-tacc_theme-css:
+styles:
   filter: cssrewrite
   output: ckanext-tacc_theme/%(version)s-tacc_theme.css
   contents:
