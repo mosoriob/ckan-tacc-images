@@ -2,5 +2,7 @@
 
 {% block styles %}
   {{ super() }}
-  <link rel="stylesheet" href="/tacc_theme.css" />
+
+  {% asset 'tacc_theme/tacc_theme' %}
+
 {% endblock %}
