@@ -4187,11 +4187,14 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-pills > li + li {
   margin-left: 2px;
 }
+.nav-pills > li > a:hover {
+  border-bottom: 2px solid #ffc107;
+}
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
   color: #fff;
-  background-color: #206b82;
+  border-bottom: 2px solid #ffc107;
 }
 .nav-stacked > li {
   float: none;
@@ -9863,7 +9866,7 @@ h4 small {
 }
 @media (min-width: 768px) {
   .hero {
-    background: url('../../base/images/background-tile.png');
+    background-color: #d7d7d7;
   }
 }
 .hero:after {
