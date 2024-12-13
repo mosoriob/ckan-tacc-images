@@ -41,7 +41,7 @@ def main():
     parser.add_argument('--api-key', required=True, help='Your CKAN API key')
     parser.add_argument('--dataset-name', required=True, help='Name of the dataset to add the resources to')
     parser.add_argument('--json-file', required=True, help='Path to JSON file containing resource data')
-    parser.add_argument('--ckan-url', default="http://192.168.1.197:5000", help='CKAN instance URL')
+    parser.add_argument('--ckan-url', default="https://ckan.tacc.utexas.edu", help='CKAN instance URL')
     args = parser.parse_args()
 
     # Read resources from JSON file

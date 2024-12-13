@@ -26,7 +26,7 @@ def main():
     parser = argparse.ArgumentParser(description='Get details of a specific CKAN dataset.')
     parser.add_argument('--api-key', required=True, help='Your CKAN API key')
     parser.add_argument('--dataset-name', required=True, help='Name of the dataset to retrieve')
-    parser.add_argument('--ckan-url', default="http://192.168.1.197:5000", help='CKAN instance URL')
+    parser.add_argument('--ckan-url', default="https://ckan.tacc.utexas.edu", help='CKAN instance URL')
     parser.add_argument('--output-file', help='Optional JSON file to save the dataset details')
     args = parser.parse_args()
 
