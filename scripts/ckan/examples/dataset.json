@@ -1,0 +1,19 @@
+[
+  {
+    "name": "dataset-1",
+    "title": "My First Dataset",
+    "notes": "Description of the dataset",
+    "owner_org": "mint",
+    "private": false,
+    "author": "John Doe",
+    "author_email": "john@example.com",
+    "tags": [{ "name": "tag1" }, { "name": "tag2" }]
+  },
+  {
+    "name": "dataset-2",
+    "title": "My Second Dataset",
+    "notes": "Another dataset description",
+    "owner_org": "mint",
+    "private": false
+  }
+]

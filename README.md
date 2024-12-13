@@ -45,3 +45,22 @@ To manage users, you can use the [CKAN API](https://docs.ckan.org/en/2.9/api/ind
 ```bash
 ckan sysadmin add john_doe
 ```
+
+### Filesystem permissions
+
+The CKAN data is stored in the `ckan_storage` volume. The `ckan` user needs to have write access to this volume.
+
+The ckan user is created with the `ckan` group.
+
+````bash
+docker-compose exec  ckan bash
+ckan@dbdd4ea66995:~$ id
+uid=503(ckan) gid=502(ckan-sys) groups=502(ckan-sys)
+```
+
+Set the correct permissions for the ckan user:
+
+```bash
+sudo chown -R 503:502 ckan_storage
+```
+````
