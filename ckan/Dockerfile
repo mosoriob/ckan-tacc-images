@@ -11,16 +11,18 @@ RUN chown -R ckan: /srv/app
 
 USER ckan
 
-RUN pip3 install -e 'git+https://github.com/mosoriob/ckanext-oauth2.git@1b5bea7b15b8de42c75492731b438917e3a07a25#egg=ckanext-oauth2'
-RUN pip3 install -e "git+https://github.com/ckan/ckanext-spatial.git#egg=ckanext-spatial"
-
 RUN pip install ckanext-geoview
-
 ADD requirements/ckanext-spatial.txt /tmp/
 RUN pip3 install -r /tmp/ckanext-spatial.txt
-# Add plugins
-ADD --chown=503:502 ckanext/ckanext-tacc_theme /srv/app/src/ckanext-tacc_theme
-RUN cd /srv/app/src/ckanext-tacc_theme && pip install -e .
+RUN pip3 install -e "git+https://github.com/ckan/ckanext-spatial.git#egg=ckanext-spatial"
+
+RUN pip3 install -e 'git+https://github.com/mosoriob/ckanext-oauth2.git@0.8.0#egg=ckanext-oauth2'
+#RUN pip3 install -e 'git+https://github.com/mosoriob/ckanext-tacc_theme.git@0.0.1#egg=ckanext-tacc_theme'
+RUN pip3 install -e 'git+https://github.com/mosoriob/ckanext-tacc_theme.git@63aaeeb2fea6590411d99752484823ebdb96cd67#egg=ckanext-tacc_theme'
+
+## Add plugins
+# ADD --chown=503:502 ckanext/ckanext-tacc_theme /srv/app/src/ckanext-tacc_theme
+# RUN cd /srv/app/src/ckanext-tacc_theme && pip install -e .
 #RUN cd /srv/app/src/ckanext-tacc_theme
 # Copy custom initialization scripts
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
