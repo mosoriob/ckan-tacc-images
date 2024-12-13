@@ -1,5 +1,9 @@
 volumes:
   ckan_storage:
+    driver_opts:
+      type: none
+      o: bind
+      device: /data/ckan
   pg_data:
   solr_data:
   pip_cache:
@@ -18,7 +22,7 @@ services:
       - solrnet
       - redisnet
     env_file:
-      - .env.dev
+      - .env
     depends_on:
       db:
         condition: service_healthy
