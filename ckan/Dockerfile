@@ -16,7 +16,7 @@ ADD requirements/ckanext-spatial.txt /tmp/
 RUN pip3 install -r /tmp/ckanext-spatial.txt
 RUN pip3 install -e "git+https://github.com/ckan/ckanext-spatial.git#egg=ckanext-spatial"
 RUN pip3 install -e 'git+https://github.com/mosoriob/ckanext-oauth2.git@0.8.0#egg=ckanext-oauth2'
-RUN pip3 install -e 'git+https://github.com/mosoriob/ckanext-tacc_theme.git@e162516fc1870d65478dfd90863fe505d53c07b3#egg=ckanext-tacc_theme'
+RUN pip3 install -e 'git+https://github.com/mosoriob/ckanext-tacc_theme.git@76da8a33fc4b33b46af7ace6a7d77940f50f35ef#egg=ckanext-tacc_theme'
 
 # Copy custom initialization scripts
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
